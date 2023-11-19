@@ -11,10 +11,14 @@ from streamlit_option_menu import option_menu
 # source venv_name/bin/activate   (mac)
 # venv_name\Scripts\activate  (windows)
 
+# Install the required packages:
+# pip install -r requirements.txt
+
 # Run the code in the terminal:
 # streamlit run Syllabus_generator.py
 
 
+# Read the original syllabus
 def read_original_syllabus(file_path="original_syllabus.txt"):
     try:
         with open(file_path, "r", encoding="utf-8") as file:
@@ -25,7 +29,6 @@ def read_original_syllabus(file_path="original_syllabus.txt"):
         return None
 
 
-# Usage example
 original_syllabus = read_original_syllabus()
 
 
@@ -51,6 +54,7 @@ def syllabus_request():
     return response["choices"][0]["message"]["content"]
 
 
+# API Request to generate the capstone project
 def capstone_request():
     messages = [
         {
@@ -72,13 +76,13 @@ def capstone_request():
     return response["choices"][0]["message"]["content"]
 
 
-# Set the overall theme to 'light'
 st.set_page_config(
     page_title="Business Strategy Syllabus",
     page_icon="🌐",
     initial_sidebar_state="expanded",
 )
 
+# Sidebar
 with st.sidebar:
     # Set up OpenAI API key
     st.header("OpenAI API Configuration")
@@ -160,6 +164,7 @@ with st.sidebar:
     else:
         if st.button("Generate Syllabus"):
             generate_syllabus()
+    st.image("IE_Business_School_logo.svg.png", width=100)
 
 # Title
 st.markdown(
@@ -186,7 +191,7 @@ st.write(
 
 type = option_menu(
     None,
-    ["Syllabus", "Capstone Project"],  # Corrected the spelling
+    ["Syllabus", "Capstone Project"],
     icons=[],
     default_index=0,
     orientation="horizontal",
@@ -203,14 +208,12 @@ if type == "Syllabus":
         )
         st.write("Unlock a unique learning journey with AI-driven customization.")
     else:
-        # Display the syllabus in a more visually appealing way
         st.markdown(
             f"**Your Personalized Syllabus:**\n\n{st.session_state.syllabus_content}"
         )
 
 # Capstone Project section
 if type == "Capstone Project":
-    # Here is where the capstone project will go
     st.subheader("Capstone Project Generator")
     st.write(
         "Once your project is ready, submit to the corresponding learning platform"
