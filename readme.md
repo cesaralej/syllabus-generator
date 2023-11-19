@@ -1,5 +1,7 @@
 # Streamlit App on Google App Engine
 
+https://syllabus-generator-ie.streamlit.app
+
 ## Overview
 
 This repository contains the source code for a Streamlit app designed to transform the learning experience for the "Big Data & Artificial Intelligence in Business Strategy" course. The app utilizes generative AI to personalize syllabus content based on user input.
